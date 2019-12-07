@@ -1,68 +1,36 @@
+const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
+
 class App extends React.Component {
   render() {
     return (
-      <div>
-        {' '}
-        <MovieAPI />;
-      </div>
-    );
-  }
-}
-class MovieAPI extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      baseURL: 'https://api.themoviedb.org/3/',
-      apikey: 'api_key=' + '1a31cfdf9cc81f7229bbbc09db5d95bd',
-      query: '&query=',
-      searchquery: 'search/movie?',
-      movieTitle: 'Jack+Reacher',
-      searchURL: '',
-      description: '',
-      resultsTitle: '',
-      resultsPopularity: ''
-    };
-  }
+      <BrowserRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/login'>Login</Link>
+            </li>
+            <li>
+              <Link to='/movies'>Movies</Link>
+            </li>
+          </ul>
+          <hr />
 
-  componentDidMount() {
-    this.setState(
-      {
-        searchURL:
-          this.state.baseURL +
-          this.state.searchquery +
-          this.state.apikey +
-          this.state.query +
-          this.state.movieTitle
-      },
-      () => {
-        console.log('search url:' + this.state.searchURL);
-        console.log('base url:' + this.state.baseURL);
-        fetch(this.state.searchURL)
-          .then(response => {
-            return response.json();
-          })
-          .then(
-            json => {
-              this.setState({
-                description: json.results[0].overview,
-                resultsTitle: json.results[0].title,
-                resultsPopularity: json.results[0].popularity
-              });
-              console.log(json.results);
-            },
-            err => console.log(err)
-          );
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        <div>{this.state.searchURL ? this.state.resultsTitle : ''}</div>
-        <div>{this.state.searchURL ? this.state.resultsPopularity : ''}</div>
-        <div>{this.state.searchURL ? this.state.description : ''}</div>
-      </div>
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/movies'>
+              <MovieAPI />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
