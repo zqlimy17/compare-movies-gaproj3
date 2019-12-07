@@ -5,27 +5,19 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
-            <li>
-              <Link to='/movies'>Movies</Link>
-            </li>
-          </ul>
-          <hr />
+          <Nav />
 
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
               <Home />
             </Route>
-            <Route path='/login'>
+            <Route path="/login">
               <Login />
             </Route>
-            <Route path='/movies'>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/movies">
               <MovieAPI />
             </Route>
           </Switch>
@@ -35,4 +27,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector('main'));
+ReactDOM.render(<App />, document.querySelector("main"));
