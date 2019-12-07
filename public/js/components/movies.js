@@ -8,9 +8,7 @@ class MovieAPI extends React.Component {
       searchquery: 'search/movie?',
       movieTitle: 'Jack+Reacher',
       searchURL: '',
-      description: '',
-      resultsTitle: '',
-      resultsPopularity: ''
+      movieResults: []
     };
   }
 
@@ -34,9 +32,7 @@ class MovieAPI extends React.Component {
           .then(
             json => {
               this.setState({
-                description: json.results[0].overview,
-                resultsTitle: json.results[0].title,
-                resultsPopularity: json.results[0].popularity
+                movieResults: json.results
               });
               console.log(json.results);
             },
@@ -49,9 +45,21 @@ class MovieAPI extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.state.searchURL ? this.state.resultsTitle : ''}</div>
-        <div>{this.state.searchURL ? this.state.resultsPopularity : ''}</div>
-        <div>{this.state.searchURL ? this.state.description : ''}</div>
+        <h1>Movies</h1>
+        <ul>
+          {this.state.movieResults.map(movie => {
+            return (
+              <React.Fragment>
+                <ul>
+                  <li> {movie.overview}</li>
+                  <li> {movie.title}</li>
+                  <li> {movie.release_date}</li>
+                  <li> {movie.poster_path}</li>
+                </ul>
+              </React.Fragment>
+            );
+          })}
+        </ul>
       </div>
     );
   }

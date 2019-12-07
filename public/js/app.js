@@ -20,7 +20,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path='/'>
-              <Home />
+              <MovieAPI />
             </Route>
             <Route path='/login'>
               <Login />
