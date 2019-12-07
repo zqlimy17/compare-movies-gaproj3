@@ -3,6 +3,7 @@ const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
 class App extends React.Component {
   render() {
     return (
+
       <BrowserRouter>
         <div>
           <ul>
@@ -18,6 +19,9 @@ class App extends React.Component {
           </ul>
           <hr />
 
+
+          <Header />
+
           <Switch>
             <Route exact path='/'>
               <MovieAPI />
@@ -32,7 +36,26 @@ class App extends React.Component {
         </div>
       </BrowserRouter>
     );
+  
   }
 }
+
+
+class Header extends React.Component {
+  render () {
+    return (
+      <div>
+      <h1> Kindly search your Movies! </h1>
+    <form>
+      <input type="text"/>
+    </form>
+    
+    </div>
+    
+    )
+  }
+}
+
+
 
 ReactDOM.render(<App />, document.querySelector('main'));
