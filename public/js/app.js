@@ -7,26 +7,26 @@ class App extends React.Component {
         <div>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
             <li>
-              <Link to="/movies">Movies</Link>
+              <Link to='/movies'>Movies</Link>
             </li>
           </ul>
           <hr />
 
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Home />
             </Route>
-            <Route path="/login">
+            <Route path='/login'>
               <Login />
             </Route>
-            <Route path="/movies">
-              <Movies />
+            <Route path='/movies'>
+              <MovieAPI />
             </Route>
           </Switch>
         </div>
@@ -35,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector("main"));
+ReactDOM.render(<App />, document.querySelector('main'));
