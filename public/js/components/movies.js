@@ -16,6 +16,7 @@ class MovieAPI extends React.Component {
 
   componentDidMount() {
     this.setState(
+      
       {
         searchURL:
           this.state.baseURL +
