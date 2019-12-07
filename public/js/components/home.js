@@ -1,3 +1,3 @@
 const Home = () => {
-  return <h1>Home</h1>;
+  return <h1>test 2</h1>;
 };

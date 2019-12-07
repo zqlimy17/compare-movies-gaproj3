@@ -3,9 +3,6 @@ const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
 class App extends React.Component {
   render() {
     return (
-      // <React.Fragment>
-      //   <h1>Hello World</h1>
-      // </React.Fragment>
       <BrowserRouter>
         <div>
           <ul>
@@ -20,6 +17,7 @@ class App extends React.Component {
             </li>
           </ul>
           <hr />
+
           <Switch>
             <Route exact path="/">
               <Home />
