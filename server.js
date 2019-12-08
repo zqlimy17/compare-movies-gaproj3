@@ -37,6 +37,10 @@ mongoose.connect(mongoURI, { useNewUrlParser: true }, () =>
 db.on("error", err => console.log(err.message + " is Mongod not running?"));
 db.on("disconnected", () => console.log("mongo disconnected"));
 
+app.get("/*", (req, res) => {
+  res.redirect("/");
+});
+
 app.listen(PORT, () => {
   console.log("Let's get things done on port", PORT);
 });

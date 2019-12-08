@@ -16,10 +16,8 @@ class App extends React.Component {
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/movies">
-              <MovieAPI />
-            </Route>
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
