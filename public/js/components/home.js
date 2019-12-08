@@ -1,3 +1,11 @@
-const Home = () => {
-  return <h1>test 2</h1>;
-};
+class Home extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Searchbar />
+        <MoviesResult />
+        <MoviesComparison />
+      </React.Fragment>
+    );
+  }
+}

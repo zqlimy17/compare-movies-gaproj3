@@ -1,20 +1,18 @@
-class MovieAPI extends React.Component {
+class MoviesResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      baseURL: 'https://api.themoviedb.org/3/',
-      apikey: 'api_key=' + '1a31cfdf9cc81f7229bbbc09db5d95bd',
-      query: '&query=',
-      searchquery: 'search/movie?',
-      movieTitle: 'Jack+Reacher',
-      searchURL: '',
+      baseURL: "https://api.themoviedb.org/3/",
+      apikey: "api_key=" + "1a31cfdf9cc81f7229bbbc09db5d95bd",
+      query: "&query=",
+      searchquery: "search/movie?",
+      movieTitle: "Jack+Reacher",
+      searchURL: "",
       movieResults: []
     };
   }
-
   componentDidMount() {
     this.setState(
-      
       {
         searchURL:
           this.state.baseURL +
@@ -24,8 +22,8 @@ class MovieAPI extends React.Component {
           this.state.movieTitle
       },
       () => {
-        console.log('search url:' + this.state.searchURL);
-        console.log('base url:' + this.state.baseURL);
+        console.log("search url:" + this.state.searchURL);
+        console.log("base url:" + this.state.baseURL);
         fetch(this.state.searchURL)
           .then(response => {
             return response.json();
@@ -42,11 +40,10 @@ class MovieAPI extends React.Component {
       }
     );
   }
-
   render() {
     return (
-      <div>
-        <h1>Movies</h1>
+      <div className="movies-result">
+        <h1>Movie Result Goes Here</h1>
         <ul>
           {this.state.movieResults.map(movie => {
             return (

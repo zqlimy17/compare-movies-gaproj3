@@ -5,49 +5,23 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
-            <li>
-              <Link to='/movies'>Movies</Link>
-            </li>
-          </ul>
-          <hr />
-
-          <Header />
-
+          <Nav />
           <Switch>
-            <Route exact path='/'>
+            <Route exact path="/">
               <Home />
             </Route>
-            <Route path='/login'>
+            <Route path="/login">
               <Login />
             </Route>
-            <Route path='/movies'>
-              <MovieAPI />
+            <Route path="/signup">
+              <Signup />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1> Kindly search your Movies! </h1>
-        <form>
-          <input type='text' />
-        </form>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.querySelector('main'));
+ReactDOM.render(<App />, document.querySelector(".container"));

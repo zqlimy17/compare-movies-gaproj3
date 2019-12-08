@@ -3,6 +3,22 @@
     outline-offset: -1px;
 }
 
-/* body {
-    background: black;
-} */
+body {
+    background: #e3f2fd
+}
+
+.search-bar {
+    background: yellow;
+}
+
+.movies-result {
+    background: grey;
+}
+
+.movies-comparison {
+    background: lime;
+}
+
+footer {
+    background: wheat;
+}
