@@ -3,7 +3,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const app = express();
+const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(10);
+const hash = bcrypt.hashSync("B4c0", salt);
 require("dotenv").config();
+
+// bcrypt
+bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash("B4c0", salt, (err, hash) => {
+        // store hash in password db
+    });
+});
 
 // Environment Variables
 const PORT = process.env.PORT;
@@ -20,22 +31,22 @@ mongoose.set("useUnifiedTopology", true);
 // Middleware
 app.use(express.json());
 app.use(express.static("public"));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false
-  })
+    session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
 );
 
 // Environment Variables
 const mongoURI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/comparison-movie-db";
+    process.env.MONGODB_URI || "mongodb://localhost:27017/comparison-movie-db";
 
 // Connect to Mongo
 mongoose.connect(mongoURI, { useNewUrlParser: true }, () =>
-  console.log("MongoDB connection established:", mongoURI)
+    console.log("MongoDB connection established:", mongoURI)
 );
 
 // Connection Error/Success
@@ -49,9 +60,9 @@ app.use("/users", usersControllers);
 
 // Routes
 app.get("/*", (req, res) => {
-  res.redirect("/");
+    res.redirect("/");
 });
 
 app.listen(PORT, () => {
-  console.log("Watching Movies on Port", PORT);
+    console.log("Watching Movies on Port", PORT);
 });
