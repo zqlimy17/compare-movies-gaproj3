@@ -1,14 +1,29 @@
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchbar: "",
+      results: []
+    }
+  }
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value })
+  }
+  handleSubmit = event => {
+    fetch() // API Goes here
+  }
   render() {
     return (
       <React.Fragment>
         <div className='search-bar'>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input
+              onChange={this.handleChange}
               type='text'
               name='searchbar'
               id='searchbar'
               placeholder='Search Movies...'
+              value={this.state.value}
             ></input>
             <input class='btn btn-primary' type='submit' value='Search'></input>
           </form>
