@@ -16,7 +16,7 @@ users.post("/", (req, res) => {
         },
         (err, createdUser) => {
             if (err) console.log(err.message);
-            res.redirect("/login");
+            res.json(createdUser);
         }
     );
 });
