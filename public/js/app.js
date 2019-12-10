@@ -6,7 +6,6 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <Nav />
-
           <Switch>
             <Route exact path="/">
               <Home />
@@ -17,14 +16,12 @@ class App extends React.Component {
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/movies">
-              <MovieAPI />
-            </Route>
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-ReactDOM.render(<App />, document.querySelector("main"));
+ReactDOM.render(<App />, document.querySelector(".container"));

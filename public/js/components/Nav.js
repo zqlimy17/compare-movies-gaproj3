@@ -30,12 +30,6 @@ class Nav extends React.Component {
                 Signup
               </Link>
             </li>
-
-            <li className="nav-item">
-              <Link className="nav-link" to="/movies">
-                Movies
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
