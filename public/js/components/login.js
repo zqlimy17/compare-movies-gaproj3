@@ -12,7 +12,6 @@ class Login extends React.Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        console.log(this.state);
         fetch("/sessions", {
             body: JSON.stringify(this.state),
             method: "POST",
@@ -24,12 +23,12 @@ class Login extends React.Component {
             .then(loggedInUser => {
                 return loggedInUser.json();
             }).then(jsonedUser => {
-                console.log(jsonedUser);
                 this.setState({
                     currentUser: jsonedUser
                 })
-                console.log('AAAAAAAAAAAAA', this.state.currentUser.name)
-
+                console.log('Current User is:', this.state.currentUser)
+            }).then(() => {
+                this.props.userState(this.state.currentUser);
             })
             .catch(error => console.log(error));
     };
