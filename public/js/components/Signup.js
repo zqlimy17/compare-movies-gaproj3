@@ -1,5 +1,3 @@
-const { BrowserRouter, Link, Switch, Route, Redirect } = ReactRouterDOM;
-
 class Signup extends React.Component {
   constructor(props) {
     super(props);
