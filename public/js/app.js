@@ -14,7 +14,7 @@ class App extends React.Component {
     })
   }
   handleLogout = () => {
-    console.log("User has logged out")
+    console.log("User has logged out");
     this.setState({
       currentUser: ""
     })
@@ -33,6 +33,9 @@ class App extends React.Component {
             </Route>
             <Route path="/signup">
               <Signup currentUser={this.state.currentUser} />
+            </Route>
+            <Route path={"/profile/:username"}>
+              <Profile currentUser={this.state.currentUser} />
             </Route>
           </Switch>
           <Footer />

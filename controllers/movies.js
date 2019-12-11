@@ -1,61 +1,37 @@
 const express = require("express");
-const router = express.Router();
-//Todo: Bring in User model
-// add movie to user route
-// GET route /:user/:movie
-// example /movies/kjKJHKJHkhkgggk/Hhkjhkhhkjhkjlkj
-// User.findByIdAndUpdate
-
+const movie = express.Router();
 const Movies = require("../models/Users");
 
-// Seeds Data
-router.get("/seed", async (req, res) => {
-  const newMovies = [
-    {
-      name: "",
-      favorites: [
-        {
-          type: String
-        }
-      ]
-    }
-  ];
-
-  try {
-    const seedItems = await Bookmarks.create(newBookmarks);
-    res.send(seedItems);
-  } catch (err) {
-    res.send(err.message);
-  }
-});
-
-// Update User - add movie
-router.put("/:userID/:movieID", (req, res) => {
+movie.put("/:userId/:movieId", (req, res) => {
   Movies.findByIdAndUpdate(
-    { /*Find logged in user*/ _id: req.params.userID },
-
-    { $push: { favorites: MovieID } },
-   
-    (err, foundMovie) => {
-      res.json(foundMovie);
+    { _id: req.params.userId },
+    {
+      $push: {
+        favorites: req.params.movieID
+      }
+    },
+    (err, updatedUser) => {
+      if (err) console.log(err.message);
+      console.log(`Movie has been added.`);
+      res.json(updatedUser);
     }
   );
 })
 
-
-// UPdate User - delete movie
-router.delete("/:user/:deleteMovieID", (req, res) => {
+movie.delete("/:user/:deleteMovieId", (req, res) => {
   Movies.findByIdAndUpdate(
-    { /*Find logged in user*/ _id: req.params.userID },
-
-    //pulling/splicing the ID of movie into User array*
-     { $pullAll: {favorites: [req.params.deleteMovieID] } } ,
-
-    (err, foundMovie) => {
-      res.json(createdMovie);
+    { _id: req.params.userID },
+    {
+      $pull: {
+        favorites: req.params.deleteMovieId
+      }
+    },
+    (err, updatedUser) => {
+      if (err) console.log(err.message);
+      console.log(`Movie has been deleted.`);
+      res.json(updatedUser);
     }
   );
-  });
+});
 
-
-module.exports = router;
+module.exports = movie;

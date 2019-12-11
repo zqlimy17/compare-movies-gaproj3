@@ -21,20 +21,24 @@ class Nav extends React.Component {
                 Home
               </Link>
             </li>
-            {this.props.currentUser ? <li className="nav-item nav-link" onClick={this.props.handleLogout}>
-              Logout
-            </li> : <li className="nav-item">
+            {this.props.currentUser ?
+              <li className="nav-item">
+                <Link className="nav-link" to={"/profile/" + this.props.currentUser.username}>Profile</Link>
+              </li>
+              :
+              <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
+                </Link>
+              </li>
+            }
+            {this.props.currentUser ? <li className="nav-item nav-link" onClick={this.props.handleLogout}>
+              <Link to="/">Logout</Link>
+            </li> : <li className="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Signup
               </Link>
               </li>}
-
-
-            {this.props.currentUser ? "" : <li className="nav-item">
-              <Link className="nav-link" to="/signup">
-                Signup
-              </Link>
-            </li>}
 
           </ul>
         </div>
