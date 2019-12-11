@@ -29,7 +29,7 @@ class App extends React.Component {
               <Home currentUser={this.state.currentUser} />
             </Route>
             <Route path="/login">
-              <Login userState={this.userState} />
+              {this.state.currentUser ? <Redirect to="/" /> : <Login userState={this.userState} />}
             </Route>
             <Route path="/signup">
               <Signup currentUser={this.state.currentUser} />
