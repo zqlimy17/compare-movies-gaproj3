@@ -31,7 +31,6 @@ class SearchBar extends React.Component {
             ></input>
             <input class='btn btn-primary' type='submit' value='Search'></input>
           </form>
-          <p>Test: {this.props.currentUser.username}</p>
         </div>
       </React.Fragment>
     );
