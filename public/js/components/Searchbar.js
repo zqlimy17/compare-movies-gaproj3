@@ -2,8 +2,11 @@ class SearchBar extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          <h1 onClick={this.props.seachMovie}>Test</h1>
+        </div>
         <div className='search-bar'>
-          <form>
+          <form onSubmit={this.props.seachMovie}>
             <input
               type='text'
               name='searchbar'
@@ -62,6 +65,7 @@ class Search extends React.Component {
   }
   seachMovie = event => {
     let text = event.target.innerText;
+    console.log(text);
     this.setState({
       movieTitle: text
     });
@@ -69,6 +73,7 @@ class Search extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <SearchBar seachMovie={this.seachMovie} />
         {this.state.movieResults ? (
           <MoviesResult movieResults={this.state.movieResults} />
         ) : (
