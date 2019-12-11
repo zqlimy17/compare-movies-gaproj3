@@ -1,4 +1,4 @@
-const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
+const { BrowserRouter, Link, Switch, Route, Redirect } = ReactRouterDOM;
 
 class App extends React.Component {
   constructor(props) {
@@ -11,15 +11,19 @@ class App extends React.Component {
     console.log("callback has been executed")
     this.setState({
       currentUser: user
-    }, () => {
-      console.log('Yaaas');
+    })
+  }
+  handleLogout = () => {
+    console.log("User has logged out")
+    this.setState({
+      currentUser: ""
     })
   }
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Nav currentUser={this.state.currentUser} />
+          <Nav currentUser={this.state.currentUser} handleLogout={this.handleLogout} />
           <Switch>
             <Route exact path="/">
               <Home currentUser={this.state.currentUser} />

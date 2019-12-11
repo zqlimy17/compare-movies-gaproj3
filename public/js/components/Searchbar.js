@@ -1,4 +1,17 @@
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchbar: "",
+      results: []
+    }
+  }
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value })
+  }
+  handleSubmit = event => {
+    fetch() // API Goes here
+  }
   render() {
     return (
       <React.Fragment>
@@ -6,12 +19,15 @@ class SearchBar extends React.Component {
           <h1 onClick={this.props.seachMovie}>Test</h1>
         </div>
         <div className='search-bar'>
-          <form onSubmit={this.props.seachMovie}>
+          <form onSubmit={this.handleSubmit}>
+
             <input
+              onChange={this.handleChange}
               type='text'
               name='searchbar'
               id='searchbar'
               placeholder='Search Movies...'
+              value={this.state.value}
             ></input>
             <input class='btn btn-primary' type='submit' value='Search'></input>
           </form>
