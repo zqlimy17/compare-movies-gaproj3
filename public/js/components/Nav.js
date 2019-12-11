@@ -1,4 +1,10 @@
 class Nav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: this.props.currentUser
+    }
+  }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,11 +31,13 @@ class Nav extends React.Component {
                 Login
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/signup">
                 Signup
               </Link>
             </li>
+            <li>{this.props.currentUser.username}</li>
           </ul>
         </div>
       </nav>

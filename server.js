@@ -4,17 +4,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const app = express();
 const bodyParser = require("body-parser");
-const bcrypt = require("bcryptjs");
-const salt = bcrypt.genSaltSync(10);
-const hash = bcrypt.hashSync("B4c0", salt);
 require("dotenv").config();
 
-// bcrypt
-bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash("B4c0", salt, (err, hash) => {
-        // store hash in password db
-    });
-});
 
 // Environment Variables
 const PORT = process.env.PORT;
@@ -57,6 +48,9 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 // Controllers
 const usersControllers = require("./controllers/users");
 app.use("/users", usersControllers);
+
+const sessionsControllers = require("./controllers/sessions");
+app.use("/sessions", sessionsControllers);
 
 // Routes
 app.get("/*", (req, res) => {
