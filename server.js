@@ -47,7 +47,18 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Controllers
 const usersControllers = require("./controllers/users");
-app.use("/users", usersControllers);
+app.use("/users", usersControllers)
+
+// changes by VJ - 10 dec 2019
+// use the controllers in server.js - 
+
+const moviesController = require('./controllers/movies.js');
+app.use('/movies', moviesController);
+
+
+//use body parser in server.js
+app.use(express.urlencoded({extended:false}));
+
 
 const sessionsControllers = require("./controllers/sessions");
 app.use("/sessions", sessionsControllers);
