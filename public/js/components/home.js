@@ -8,6 +8,8 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
+
+
         <SearchBar currentUser={this.state.currentUser} />
         <Search currentUser={this.state.currentUser} />
         <MoviesComparison currentUser={this.state.currentUser} />
