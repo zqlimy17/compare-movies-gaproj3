@@ -5,7 +5,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: "",
-      getFavorites: "",
+      getRecommended: "",
       recommendedMovies: []
     }
   }
@@ -13,15 +13,17 @@ class App extends React.Component {
     const randomIndex = Math.floor(Math.random() * user.favorites.length);
     this.setState({
       currentUser: user,
-      getFavorites: `https://api.themoviedb.org/3/movie/${user.favorites[randomIndex]}/recommendations?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1`
+      getRecommended: `https://api.themoviedb.org/3/movie/${user.favorites[randomIndex]}/recommendations?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1`
     })
-    fetch("https://api.themoviedb.org/3/movie/4771/recommendations?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1")
+    fetch(this.state.getRecommended)
       .then(response => {
         return response.json();
       }).then(jsonedMovies => {
         this.setState({
           recommendedMovies: jsonedMovies.results
         });
+        console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', this.state.recommendedMovies)
+
       },
         err => console.log(err)
       );
