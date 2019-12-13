@@ -12,7 +12,7 @@ class Profile extends React.Component {
                 <h1>Welcome {this.state.currentUser.name}!</h1>
                 <h2>These are the movies that you have starred!</h2>
                 {this.props.currentUser.favorites.map(movie => {
-                    return <SingleMovie movie={movie} />
+                    return <UserMovie movie={movie} />
                 })}
             </div>
         )

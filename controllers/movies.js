@@ -1,13 +1,13 @@
 const express = require("express");
 const movie = express.Router();
-const Movies = require("../models/Users");
+const Users = require("../models/Users");
 
 movie.put("/:userId/:movieId", (req, res) => {
-  Movies.findByIdAndUpdate(
+  Users.findByIdAndUpdate(
     { _id: req.params.userId },
     {
       $push: {
-        favorites: req.params.movieID
+        favorites: req.params.movieId
       }
     },
     (err, updatedUser) => {
@@ -19,7 +19,7 @@ movie.put("/:userId/:movieId", (req, res) => {
 })
 
 movie.delete("/:user/:deleteMovieId", (req, res) => {
-  Movies.findByIdAndUpdate(
+  Users.findByIdAndUpdate(
     { _id: req.params.userID },
     {
       $pull: {
