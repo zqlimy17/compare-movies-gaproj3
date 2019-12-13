@@ -28,7 +28,7 @@ class RecommendedMovies extends React.Component {
         <h3>Here are some movies that you might like!</h3>
         {this.props.currentUser ? <table>
           {this.props.recommendedMovies.map(movie => {
-            return <MovieList movie={movie} />
+            return <MovieList movie={movie} currentUser={this.props.currentUser} />
           })}
         </table> : <table>
             {this.state.popularMovies.map(movie => {
