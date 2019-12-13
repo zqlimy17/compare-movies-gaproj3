@@ -4,15 +4,29 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: ""
+      currentUser: "",
+      getFavorites: "",
+      recommendedMovies: []
     }
   }
   userState = (user) => {
     console.log("callback has been executed")
     this.setState({
-      currentUser: user
+      currentUser: user,
+      getFavorites: `https://api.themoviedb.org/3/movie/${user.favorites[0]}/recommendations?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1`
     })
+    fetch("https://api.themoviedb.org/3/movie/4771/recommendations?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1")
+      .then(response => {
+        return response.json();
+      }).then(jsonedMovies => {
+        this.setState({
+          recommendedMovies: jsonedMovies.results
+        });
+      },
+        err => console.log(err)
+      );
   }
+
   handleLogout = () => {
     console.log("User has logged out");
     this.setState({
@@ -26,7 +40,7 @@ class App extends React.Component {
           <Nav currentUser={this.state.currentUser} handleLogout={this.handleLogout} />
           <Switch>
             <Route exact path="/">
-              <Home currentUser={this.state.currentUser} />
+              <Home currentUser={this.state.currentUser} recommendedMovies={this.state.recommendedMovies} />
             </Route>
             <Route path="/login">
               {this.state.currentUser ? <Redirect to="/" /> : <Login userState={this.userState} />}
