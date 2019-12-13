@@ -16,26 +16,32 @@ class Nav extends React.Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li className="nav-item active">
+            <li className="nav-item">
               <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
-            {this.props.currentUser ? <li className="nav-item nav-link" onClick={this.props.handleLogout}>
-              Logout
-            </li> : <li className="nav-item">
+            {this.props.currentUser ?
+              <li className="nav-item">
+                <Link className="nav-link" to={"/profile/" + this.props.currentUser.username}>Profile</Link>
+              </li>
+              :
+              <li className="nav-item">
                 <Link className="nav-link" to="/login">
                   Login
+                </Link>
+              </li>
+            }
+            {this.props.currentUser ?
+              <li className="nav-item" onClick={this.props.handleLogout}>
+                <Link className="nav-link" to="/">Logout</Link>
+              </li> :
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">
+                  Signup
               </Link>
-              </li>}
-
-
-            {this.props.currentUser ? "" : <li className="nav-item">
-              <Link className="nav-link" to="/signup">
-                Signup
-              </Link>
-            </li>}
-
+              </li>
+            }
           </ul>
         </div>
       </nav>
