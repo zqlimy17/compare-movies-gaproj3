@@ -8,8 +8,6 @@ class MovieList extends React.Component {
     }
 
     handleAddFavorites = event => {
-        console.log(this.state.favoriteUrl);
-        console.log(this.props.currentUser);
         fetch(this.state.favoriteUrl, {
             method: "PUT"
         }).then(
