@@ -6,13 +6,15 @@ class MovieList extends React.Component {
             favoriteUrl: "/movies/" + this.props.currentUser._id + "/" + this.props.movie.id
         }
     }
-
     handleAddFavorites = event => {
         fetch(this.state.favoriteUrl, {
             method: "PUT"
-        }).then(
-            console.log('added to favs')
-        ).catch(error => console.log(error));
+        }).then(response => {
+            return response.json();
+        }).then(jsonedUser => {
+            this.props.userState(jsonedUser);
+            console.log('working');
+        }).catch(error => console.log(error));
     }
     render() {
         return (

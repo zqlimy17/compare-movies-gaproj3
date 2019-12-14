@@ -28,7 +28,7 @@ class PopularMovies extends React.Component {
                 <h3>Popular</h3>
                 <table>
                     {this.state.popularMovies.map(movie => {
-                        return <MovieList movie={movie} currentUser={this.props.currentUser} />
+                        return <MovieList movie={movie} currentUser={this.props.currentUser} userState={this.props.userState} />
                     })
                     }
                 </table>

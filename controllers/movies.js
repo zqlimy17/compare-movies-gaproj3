@@ -6,7 +6,7 @@ movie.put('/:userId/:movieId', (req, res) => {
   Users.findByIdAndUpdate(
     { _id: req.params.userId },
     {
-      $push: {
+      $addToSet: {
         favorites: req.params.movieId
       }
     },
@@ -22,7 +22,7 @@ movie.delete('/:userId/:deleteMovieId', (req, res) => {
   Users.findByIdAndUpdate(
     { _id: req.params.userId },
     {
-      $pull: {
+      $pullAll: {
         favorites: req.params.deleteMovieId
       }
     },

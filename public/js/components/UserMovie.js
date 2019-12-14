@@ -33,6 +33,20 @@ class UserMovie extends React.Component {
                 isHidden: true
             })
         ).catch(error => console.log(error));
+        fetch("/sessions", {
+            body: JSON.stringify(this.props.currentUser),
+            method: "POST",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(loggedInUser => {
+                return loggedInUser.json();
+            }).then(jsonedUser => {
+                this.props.userState(jsonedUser);
+            })
+            .catch(error => console.log(error));
     }
     render() {
         return (
