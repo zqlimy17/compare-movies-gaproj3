@@ -52,6 +52,7 @@ class App extends React.Component {
             <Route path={"/profile/:username"}>
               <Profile currentUser={this.state.currentUser} userState={this.userState} />
             </Route>
+            <Route path={"/movie/:movieId"} component={OneMovie} currentUser={this.state.currentUser} userState={this.userState} />
           </Switch>
           <Footer />
         </div>

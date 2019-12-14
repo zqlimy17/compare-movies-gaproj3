@@ -1,10 +1,10 @@
 * {
-    outline: 1px solid black;
+    outline: 1px solid gold;
     outline-offset: -1px;
 }
 
 body {
-    background: black;
+    background: grey;
     font-family: 'Sulphur Point', sans-serif;
 
 }
@@ -18,7 +18,7 @@ body {
 }
 
 .movies-comparison {
-    background:black;
+    background:grey;
 }
 .hide {
     display:none;
