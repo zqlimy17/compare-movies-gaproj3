@@ -19,7 +19,7 @@ class MovieList extends React.Component {
     render() {
         return (
             <div className='board'>
-                <img src={this.state.url} />
+                <Link to={"/movie/" + this.props.movie.id} ><img src={this.state.url} /></Link>
                 {this.props.currentUser === "" ? <Link to="/login">Add to Favorites </Link> : <button onClick={this.handleAddFavorites}>Add to Favorites</button>}
             </div>
         )
