@@ -1,42 +1,3 @@
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchbar: "",
-      results: []
-    }
-  }
-  handleChange = event => {
-    this.setState({ [event.target.id]: event.target.value })
-  }
-  handleSubmit = event => {
-    fetch() // API Goes here
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <div>
-          <h1 onClick={this.props.seachMovie}>Test</h1>
-        </div>
-        <div className='search-bar'>
-          <form onSubmit={this.handleSubmit}>
-
-            <input
-              onChange={this.handleChange}
-              type='text'
-              name='searchbar'
-              id='searchbar'
-              placeholder='Search Movies...'
-              value={this.state.value}
-            ></input>
-            <input class='btn btn-primary' type='submit' value='Search'></input>
-          </form>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +11,40 @@ class Search extends React.Component {
       movieResults: []
     };
   }
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.setState(
+  //     {
+  //       searchURL:
+  //         this.state.baseURL +
+  //         this.state.searchquery +
+  //         this.state.apikey +
+  //         this.state.query +
+  //         this.state.movieTitle
+  //     },
+  //     () => {
+  //       console.log('search url:' + this.state.searchURL);
+  //       console.log('base url:' + this.state.baseURL);
+  //       fetch(this.state.searchURL)
+  //         .then(response => {
+  //           return response.json();
+  //         })
+  //         .then(
+  //           json => {
+  //             this.setState({
+  //               movieResults: json.results
+  //             });
+  //             console.log(json.results);
+  //           },
+  //           err => console.log(err)
+  //         );
+  //     }
+  //   );
+  // }
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value });
+  };
+  handleSubmit = event => {
+    event.preventDefault();
     this.setState(
       {
         searchURL:
@@ -77,23 +71,29 @@ class Search extends React.Component {
           );
       }
     );
-  }
-  seachMovie = event => {
-    let text = event.target.innerText;
-    console.log(text);
-    this.setState({
-      movieTitle: text
-    });
   };
   render() {
     return (
       <React.Fragment>
-        <SearchBar seachMovie={this.seachMovie} />
+        <div className='search-bar'>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              onChange={this.handleChange}
+              type='text'
+              name='searchbar'
+              id='movieTitle'
+              placeholder='Search Movies...'
+              value={this.state.value}
+            ></input>
+            <input class='btn btn-primary' type='submit' value='Search'></input>
+          </form>
+        </div>
+
         {this.state.movieResults ? (
           <MoviesResult movieResults={this.state.movieResults} />
         ) : (
-            ''
-          )}
+          ''
+        )}
       </React.Fragment>
     );
   }
