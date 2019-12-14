@@ -55,8 +55,8 @@ class Search extends React.Component {
           this.state.movieTitle
       },
       () => {
-        console.log('search url:' + this.state.searchURL);
-        console.log('base url:' + this.state.baseURL);
+        // console.log('search url:' + this.state.searchURL);
+        // console.log('base url:' + this.state.baseURL);
         fetch(this.state.searchURL)
           .then(response => {
             return response.json();
@@ -66,7 +66,6 @@ class Search extends React.Component {
               this.setState({
                 movieResults: json.results
               });
-              console.log(json.results);
             },
             err => console.log(err)
           );
