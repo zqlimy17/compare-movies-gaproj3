@@ -5,11 +5,11 @@ class UserMovie extends React.Component {
             image: "",
             title: "",
             singleUrl: "https://api.themoviedb.org/3/movie/" + this.props.movie + "?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US",
-            removeMovieRoute: "/movies/" + this.props.currentUser._id + "/" + this.props.movie
+            removeMovieRoute: "/movies/" + this.props.currentUser._id + "/" + this.props.movie,
+            isHidden: false
         }
     }
     componentDidMount() {
-        console.log('profile is working')
         fetch(this.state.singleUrl)
             .then(response => {
                 return response.json();
@@ -22,22 +22,24 @@ class UserMovie extends React.Component {
                     });
                 },
                 err => console.log(err)
-            );
+            )
     }
     removeMovie = () => {
         console.log('remove movie route is:', this.state.removeMovieRoute);
         fetch(this.state.removeMovieRoute, {
             method: "DELETE"
         }).then(
-            console.log('removed from favs')
+            this.setState({
+                isHidden: true
+            })
         ).catch(error => console.log(error));
     }
     render() {
         return (
-            <React.Fragment>
+            <div className={this.state.isHidden ? 'hide' : ''}>
                 <img src={this.state.image} />
                 <button onClick={this.removeMovie}>Remove from Favorites goes here</button>
-            </React.Fragment>
+            </div>
         )
     }
 }

@@ -19,7 +19,6 @@ class MovieList extends React.Component {
             <div>
                 <img src={this.state.url} />
                 {this.props.currentUser === "" ? <Link to="/login">Add to Favorites </Link> : <button onClick={this.handleAddFavorites}>Add to Favorites</button>}
-
             </div>
         )
     }
