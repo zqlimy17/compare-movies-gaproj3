@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const movie = express.Router();
-const Users = require("../models/Users");
+const Users = require('../models/Users');
 
-movie.put("/:userId/:movieId", (req, res) => {
+movie.put('/:userId/:movieId', (req, res) => {
   Users.findByIdAndUpdate(
     { _id: req.params.userId },
     {
@@ -16,9 +16,9 @@ movie.put("/:userId/:movieId", (req, res) => {
       res.json(updatedUser);
     }
   );
-})
+});
 
-movie.delete("/:userId/:deleteMovieId", (req, res) => {
+movie.delete('/:userId/:deleteMovieId', (req, res) => {
   Users.findByIdAndUpdate(
     { _id: req.params.userId },
     {
