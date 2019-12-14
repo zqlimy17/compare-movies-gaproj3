@@ -18,9 +18,9 @@ movie.put("/:userId/:movieId", (req, res) => {
   );
 })
 
-movie.delete("/:user/:deleteMovieId", (req, res) => {
+movie.delete("/:userId/:deleteMovieId", (req, res) => {
   Users.findByIdAndUpdate(
-    { _id: req.params.userID },
+    { _id: req.params.userId },
     {
       $pull: {
         favorites: req.params.deleteMovieId
@@ -28,7 +28,7 @@ movie.delete("/:user/:deleteMovieId", (req, res) => {
     },
     (err, updatedUser) => {
       if (err) console.log(err.message);
-      console.log(`Movie has been deleted.`);
+      console.log('Movie has been deleted.');
       res.json(updatedUser);
     }
   );

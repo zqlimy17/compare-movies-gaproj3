@@ -20,6 +20,9 @@ body {
 .movies-comparison {
     background: lime;
 }
+.hide {
+    display:none;
+}
 
 footer {
     background: wheat;
