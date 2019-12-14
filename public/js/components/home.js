@@ -9,11 +9,10 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Search currentUser={this.state.currentUser} />
-        {this.props.currentUser ? <RecommendedMovies currentUser={this.props.currentUser} recommendedMovies={this.props.recommendedMovies} />
+        {this.props.recommendedMovies ? <RecommendedMovies currentUser={this.props.currentUser} recommendedMovies={this.props.recommendedMovies} userState={this.props.userState} />
           : ""}
-        <NowPlaying currentUser={this.props.currentUser} />
-
-        <PopularMovies currentUser={this.props.currentUser} />
+        <NowPlaying currentUser={this.props.currentUser} userState={this.props.userState} />
+        <PopularMovies currentUser={this.props.currentUser} userState={this.props.userState} />
       </React.Fragment>
     );
   }

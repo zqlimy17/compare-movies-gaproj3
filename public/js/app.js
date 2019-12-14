@@ -10,6 +10,7 @@ class App extends React.Component {
     }
   }
   userState = (user) => {
+    console.log("user state called");
     const randomIndex = Math.floor(Math.random() * user.favorites.length);
     this.setState({
       currentUser: user,
@@ -22,8 +23,6 @@ class App extends React.Component {
         this.setState({
           recommendedMovies: jsonedMovies.results
         });
-        console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', this.state.recommendedMovies)
-
       },
         err => console.log(err)
       );
@@ -42,7 +41,7 @@ class App extends React.Component {
           <Nav currentUser={this.state.currentUser} handleLogout={this.handleLogout} />
           <Switch>
             <Route exact path="/">
-              <Home currentUser={this.state.currentUser} recommendedMovies={this.state.recommendedMovies} />
+              <Home currentUser={this.state.currentUser} recommendedMovies={this.state.recommendedMovies} userState={this.userState} />
             </Route>
             <Route path="/login">
               {this.state.currentUser ? <Redirect to="/" /> : <Login userState={this.userState} />}
@@ -51,7 +50,7 @@ class App extends React.Component {
               <Signup currentUser={this.state.currentUser} />
             </Route>
             <Route path={"/profile/:username"}>
-              <Profile currentUser={this.state.currentUser} />
+              <Profile currentUser={this.state.currentUser} userState={this.userState} />
             </Route>
           </Switch>
           <Footer />

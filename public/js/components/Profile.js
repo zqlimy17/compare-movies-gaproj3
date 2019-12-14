@@ -5,7 +5,7 @@ class Profile extends React.Component {
                 <h1>Welcome {this.props.currentUser.name}!</h1>
                 <h2>These are the movies that you have starred!</h2>
                 {this.props.currentUser.favorites.map(movie => {
-                    return <UserMovie movie={movie} currentUser={this.props.currentUser} />
+                    return <UserMovie movie={movie} currentUser={this.props.currentUser} userState={this.props.userState} />
                 })}
             </div>
         )
