@@ -1,12 +1,20 @@
-* {
+/* * {
     outline: 1px solid gold;
     outline-offset: -1px;
+} */
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: gold;
 }
 
 body {
     background: black;
-    font-family: 'Sulphur Point', sans-serif;
-
+    font-family: "Sulphur Point", sans-serif;
+    color: white;
 }
 
 .search-bar {
@@ -18,62 +26,62 @@ body {
 }
 
 .movies-comparison {
-    background:grey;
+    background: grey;
 }
+
 .hide {
-    display:none;
+    display: none;
 }
 
 footer {
-    background:gray;
+    background: gray;
 }
 
 .board {
-   
     display: inline;
     padding: 10px;
 }
 
-.single-movie{
-    color:white;
+.single-movie {
+    color: white;
 }
 
 .bg {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-  
+    position: fixed;
+    top: 0;
+    left: 0;
+
     /* Preserve aspet ratio */
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
     opacity: 0.5;
-  }
+}
 
 .bg-cover {
-/* Set rules to fill background */
-min-height: 100%;
-min-width: 1024px;
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
 
-/* Set up proportionate scaling */
-width: 100%;
-height: auto;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
 
-/* Set up positioning */
-position: fixed;
-top: 0;
-left: 0;
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .poster {
     width: 70%;
-    display:block;
-    margin:auto;
+    display: block;
+    margin: auto;
 }
 
-.single-recommended{
+.single-recommended {
     z-index: 2;
-    display:flex;
+    display: flex;
     overflow-x: auto;
 }
 

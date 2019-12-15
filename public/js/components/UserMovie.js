@@ -4,10 +4,17 @@ class UserMovie extends React.Component {
         this.state = {
             image: "",
             title: "",
-            singleUrl: "https://api.themoviedb.org/3/movie/" + this.props.movie + "?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US",
-            removeMovieRoute: "/movies/" + this.props.currentUser._id + "/" + this.props.movie,
+            singleUrl:
+                "https://api.themoviedb.org/3/movie/" +
+                this.props.movie +
+                "?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US",
+            removeMovieRoute:
+                "/movies/" +
+                this.props.currentUser._id +
+                "/" +
+                this.props.movie,
             isHidden: false
-        }
+        };
     }
     componentDidMount() {
         fetch(this.state.singleUrl)
@@ -17,43 +24,38 @@ class UserMovie extends React.Component {
             .then(
                 json => {
                     this.setState({
-                        image: "http://image.tmdb.org/t/p/w300" + json.poster_path,
+                        image:
+                            "http://image.tmdb.org/t/p/w300" + json.poster_path,
                         title: json.original_title
                     });
                 },
                 err => console.log(err)
-            )
+            );
     }
     removeMovie = () => {
-        console.log('remove movie route is:', this.state.removeMovieRoute);
+        this.props.minus();
+
         fetch(this.state.removeMovieRoute, {
             method: "DELETE"
-        }).then(
-            this.setState({
-                isHidden: true
-            })
-        ).catch(error => console.log(error));
-        fetch("/sessions", {
-            body: JSON.stringify(this.props.currentUser),
-            method: "POST",
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json"
-            }
         })
-            .then(loggedInUser => {
-                return loggedInUser.json();
-            }).then(jsonedUser => {
-                this.props.userState(jsonedUser);
+            .then(response => {
+                this.setState({
+                    isHidden: true
+                });
+                return response.json();
             })
-            .catch(error => console.log(error));
-    }
+            .then(jsonedResponse => {
+                this.props.userState(jsonedResponse);
+            });
+    };
     render() {
         return (
-            <div className={this.state.isHidden ? 'hide' : ''}>
+            <div className={this.state.isHidden ? "hide" : ""}>
                 <img src={this.state.image} />
-                <button onClick={this.removeMovie}>Remove from Favorites goes here</button>
+                <button onClick={this.removeMovie}>
+                    Remove from Favorites goes here
+                </button>
             </div>
-        )
+        );
     }
 }
