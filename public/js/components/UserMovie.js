@@ -6,7 +6,9 @@ class UserMovie extends React.Component {
             title: "",
             singleUrl: `https://api.themoviedb.org/3/movie/${this.props.movie}?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US`,
             removeMovieRoute: `/movies/${this.props.currentUser._id}/${this.props.movie}`,
-            isHidden: false
+            isHidden: false,
+            backdrop: "",
+            hover: false
         };
     }
     componentDidMount() {
@@ -18,7 +20,8 @@ class UserMovie extends React.Component {
                 json => {
                     this.setState({
                         image: `http://image.tmdb.org/t/p/w185${json.poster_path}`,
-                        title: json.original_title
+                        title: json.original_title,
+                        backdrop: `https://image.tmdb.org/t/p/w1280/${json.backdrop_path}`
                     });
                 },
                 err => console.log(err)
@@ -37,10 +40,27 @@ class UserMovie extends React.Component {
                 this.props.userState(jsonedResponse);
             });
     };
+    handleMouseEnter = () => {
+        this.setState({
+            hover: true
+        });
+    };
+    handleMouseLeave = () => {
+        this.setState({
+            hover: false
+        });
+    };
     render() {
         return (
             <React.Fragment>
-                <div className={this.state.isHidden ? "hide" : ""}>
+                <div
+                    className={this.state.isHidden ? "hide" : ""}
+                    onMouseEnter={this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseLeave}
+                >
+                    <div className={this.state.hover ? "bg" : "hide"}>
+                        <img className="bg-cover" src={this.state.backdrop} />
+                    </div>
                     <div className="hovereffect">
                         <img
                             src={this.state.image}
