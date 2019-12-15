@@ -4,15 +4,8 @@ class UserMovie extends React.Component {
         this.state = {
             image: "",
             title: "",
-            singleUrl:
-                "https://api.themoviedb.org/3/movie/" +
-                this.props.movie +
-                "?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US",
-            removeMovieRoute:
-                "/movies/" +
-                this.props.currentUser._id +
-                "/" +
-                this.props.movie,
+            singleUrl: `https://api.themoviedb.org/3/movie/${this.props.movie}?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US`,
+            removeMovieRoute: `/movies/${this.props.currentUser._id}/${this.props.movie}`,
             isHidden: false
         };
     }
@@ -24,8 +17,7 @@ class UserMovie extends React.Component {
             .then(
                 json => {
                     this.setState({
-                        image:
-                            "http://image.tmdb.org/t/p/w300" + json.poster_path,
+                        image: `http://image.tmdb.org/t/p/w185${json.poster_path}`,
                         title: json.original_title
                     });
                 },
@@ -34,10 +26,7 @@ class UserMovie extends React.Component {
     }
     removeMovie = () => {
         this.props.minus();
-
-        fetch(this.state.removeMovieRoute, {
-            method: "DELETE"
-        })
+        fetch(this.state.removeMovieRoute, { method: "DELETE" })
             .then(response => {
                 this.setState({
                     isHidden: true
@@ -50,12 +39,35 @@ class UserMovie extends React.Component {
     };
     render() {
         return (
-            <div className={this.state.isHidden ? "hide" : ""}>
-                <img src={this.state.image} />
-                <button onClick={this.removeMovie}>
-                    Remove from Favorites goes here
-                </button>
-            </div>
+            <React.Fragment>
+                <div className={this.state.isHidden ? "hide" : ""}>
+                    <div className="hovereffect">
+                        <img
+                            src={this.state.image}
+                            style={{ display: "block", margin: "auto" }}
+                        />
+
+                        <div className="overlay">
+                            <Link to={"/movie/" + this.props.movie}>
+                                <p>{this.state.title}</p>
+                            </Link>
+                            <Link
+                                className="info"
+                                to={"/movie/" + this.props.movie}
+                            >
+                                More Info
+                            </Link>
+                            <br />
+                            <Link
+                                className="movie-remove"
+                                onClick={this.removeMovie}
+                            >
+                                Remove
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }

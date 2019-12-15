@@ -16,16 +16,18 @@ class Profile extends React.Component {
                 <h1>Welcome {this.props.currentUser.name}!</h1>
                 <p>Total Favorites: {this.state.num}</p>
                 <h3>Your Favorites</h3>
-                {this.props.currentUser.favorites.reverse().map(movie => {
-                    return (
-                        <UserMovie
-                            movie={movie}
-                            currentUser={this.props.currentUser}
-                            userState={this.props.userState}
-                            minus={this.minus}
-                        />
-                    );
-                })}
+                <div className="d-flex flex-wrap">
+                    {this.props.currentUser.favorites.reverse().map(movie => {
+                        return (
+                            <UserMovie
+                                movie={movie}
+                                currentUser={this.props.currentUser}
+                                userState={this.props.userState}
+                                minus={this.minus}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         );
     }

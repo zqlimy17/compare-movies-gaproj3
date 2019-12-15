@@ -9,10 +9,7 @@ class Nav extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg">
                 <Link className="navbar-brand" to="/">
-                    <img
-                        src="/img/cover.png"
-                        style={{ maring: 0, width: "300px" }}
-                    />
+                    SMDB
                 </Link>
                 <button
                     className="navbar-toggler"
