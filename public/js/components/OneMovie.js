@@ -37,7 +37,7 @@ class OneMovie extends React.Component {
                     voteCount: jsonedResults.vote_count,
                     id: jsonedResults.id
                 })
-                console.log(this.state)
+
             }
         )
         fetch(this.state.recommended)
@@ -48,7 +48,6 @@ class OneMovie extends React.Component {
                     recommendedMovies: jsonedMovies.results
                 });
             });
-
     }
 
     async handleRefresh(movie) {
@@ -109,7 +108,6 @@ class OneMovie extends React.Component {
                 <div className="p-3">
                     <h2>Similar Movies</h2>
                     <div className="single-recommended">
-
                         {this.state.recommendedMovies.map(movie => {
                             return <Link to={"/movie/" + movie.id} >
                                 <img onClick={() => { this.handleRefresh(movie.id) }} src={"http://image.tmdb.org/t/p/w185" + movie.poster_path} />
@@ -117,8 +115,6 @@ class OneMovie extends React.Component {
                         })}
                     </div>
                 </div>
-
-
             </div>
         )
     }
