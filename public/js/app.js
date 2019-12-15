@@ -1,4 +1,4 @@
-const { BrowserRouter, Link, Switch, Route, Redirect } = ReactRouterDOM;
+const { BrowserRouter, Link, Switch, Route, Redirect, Slider } = ReactRouterDOM;
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class App extends React.Component {
     }
   }
   userState = (user) => {
-    console.log("user state called");
     const randomIndex = Math.floor(Math.random() * user.favorites.length);
     this.setState({
       currentUser: user,
@@ -26,6 +25,8 @@ class App extends React.Component {
       },
         err => console.log(err)
       );
+    console.log('current user is', this.state.currentUser)
+
   }
   handleLogout = () => {
     console.log("User has logged out");
@@ -52,7 +53,7 @@ class App extends React.Component {
             <Route path={"/profile/:username"}>
               <Profile currentUser={this.state.currentUser} userState={this.userState} />
             </Route>
-            <Route path={"/movie/:movieId"} component={OneMovie} currentUser={this.state.currentUser} userState={this.userState} />
+            <Route path={"/movie/:movieId"} render={(props) => <OneMovie {...props} currentUser={this.state.currentUser} userState={this.userState} />} />
           </Switch>
           <Footer />
         </div>
