@@ -39,7 +39,7 @@ class Login extends React.Component {
         return (
             <React.Fragment>
                 <div className="bg">
-                    <img className="bg-cover" src="./img/main_bg.jpg" />
+                    <img className="bg-cover" src="../img/main_bg.jpg" />
                 </div>
                 <div className="row d-flex justify-content-center pt-5">
                     <div className="col-4 form p-4">
@@ -56,7 +56,7 @@ class Login extends React.Component {
                                     name="username"
                                     value={this.state.username}
                                     onChange={this.handleChange}
-                                    placeholder="Enter Username"
+                                    placeholder="Your Username"
                                     className="form-control"
                                 />
                             </div>
@@ -68,7 +68,7 @@ class Login extends React.Component {
                                     name="password"
                                     value={this.state.password}
                                     onChange={this.handleChange}
-                                    placeholder="Enter Password"
+                                    placeholder="Your Password"
                                     className="form-control"
                                 />
                             </div>

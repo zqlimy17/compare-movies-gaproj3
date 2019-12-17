@@ -36,6 +36,15 @@ body {
     /* height of your footer */
 }
 
+.navbar-brand {
+    color: gold;
+    font-family: 'Alatsi', sans-serif;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
 footer {
     position: absolute;
     bottom: 0;
@@ -242,6 +251,7 @@ a:hover {
     border: 0;
 }
 
+
 .form-control:focus {
     background: #454545;
     color: white;
@@ -251,4 +261,5 @@ a:hover {
 
 .form-control::placeholder {
     color: ghostwhite;
+    text-transform: none !important;
 }

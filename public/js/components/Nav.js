@@ -9,7 +9,7 @@ class Nav extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg">
                 <Link className="navbar-brand" to="/">
-                    SMDB
+                    SMDb
                 </Link>
                 <button
                     className="navbar-toggler"
