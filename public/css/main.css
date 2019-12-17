@@ -111,7 +111,7 @@ a:hover {
 .single-recommended {
     z-index: 2;
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
 }
 
 .single-recommended img {
