@@ -1,11 +1,4 @@
 class RecommendedMovies extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      getPopular: "https://api.themoviedb.org/3/movie/popular?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&language=en-US&page=1"
-    }
-  }
-
   render() {
     return (
       <div className="movies-comparison">
