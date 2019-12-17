@@ -30,10 +30,12 @@ class Search extends React.Component {
         // console.log('base url:' + this.state.baseURL);
         fetch(this.state.searchURL)
           .then(response => {
+            console.log('BBBBBBBB', this.state.searchURL);
             return response.json();
           })
           .then(
             json => {
+              console.log(json.results);
               this.setState({
                 movieResults: json.results
               });
@@ -62,8 +64,8 @@ class Search extends React.Component {
               id='movieTitle'
               placeholder='Search Movies...'
               value={this.state.value}
-            ></input>
-            <input class='btn btn-primary' type='submit' value='Search'></input>
+            />
+            <input class='btn btn-primary' type='submit' value='Search' />
           </form>
         </div>
         {this.state.movieResults ? (

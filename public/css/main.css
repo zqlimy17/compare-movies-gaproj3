@@ -1,37 +1,34 @@
 * {
-    outline: 1px solid black;
-    outline-offset: -1px;
+  outline: 1px solid black;
+  outline-offset: -1px;
 }
 
 body {
-    background: black;
-    font-family: 'Sulphur Point', sans-serif;
-
+  background: black;
+  font-family: 'Sulphur Point', sans-serif;
+  color: wheat;
 }
 
 .search-bar {
-    background: black;
+  background: black;
 }
 
 .movies-result {
-    background: whitesmoke;
+  background: whitesmoke;
 }
 
 .movies-comparison {
-    background:black;
+  background: black;
 }
 .hide {
-    display:none;
+  display: none;
 }
 
 footer {
-    background:gray;
+  background: gray;
 }
 
 .board {
-   
-    display: inline;
-    padding: 10px;
-    
-  }
-
+  display: inline;
+  padding: 10px;
+}
