@@ -12,7 +12,7 @@ class Home extends React.Component {
                     <img className="bg-cover" src="./img/main_bg.jpg" />
                 </div>
                 <Search currentUser={this.state.currentUser} />
-                {this.props.recommendedMovies ? (
+                {/* {this.props.recommendedMovies ? (
                     <RecommendedMovies
                         currentUser={this.props.currentUser}
                         recommendedMovies={this.props.recommendedMovies}
@@ -20,7 +20,7 @@ class Home extends React.Component {
                     />
                 ) : (
                     ""
-                )}
+                )} */}
                 <NowPlaying
                     currentUser={this.props.currentUser}
                     userState={this.props.userState}

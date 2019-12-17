@@ -60,18 +60,6 @@ a:hover {
 }
 
 
-.search-bar {
-    background: black;
-}
-
-.movies-result {
-    background: whitesmoke;
-}
-
-.movies-comparison {
-    background: grey;
-}
-
 .hide {
     display: none;
     visibility: hidden;

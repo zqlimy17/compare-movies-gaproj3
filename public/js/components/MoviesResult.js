@@ -8,40 +8,23 @@ class MoviesResult extends React.Component {
     };
     render() {
         return (
-            <div className="movies-result">
-                <ul>
-                    {this.props.movieResults ? (
-                        this.props.movieResults.map(movie => {
-                            return (
-                                <React.Fragment>
-                                    <ul>
-                                        <li> {movie.title}</li>
-                                        <li> {movie.vote_average} of 10 </li>
-                                    </ul>
-                                    <img
-                                        src={
-                                            "http://image.tmdb.org/t/p/w300" +
-                                            movie.poster_path
-                                        }
-                                    />
-                                    {this.props.currentUser ? (
-                                        <button
-                                            onClick={() =>
-                                                this.handleAddFavorite(movie)
-                                            }
-                                        >
-                                            Like!
-                                        </button>
-                                    ) : (
-                                        <Link to="/login">Like</Link>
-                                    )}
-                                </React.Fragment>
-                            );
-                        })
-                    ) : (
-                        <div>Search Movie Results</div>
-                    )}
-                </ul>
+            <div className="single-recommended">
+                {this.props.movieResults ? (
+                    this.props.movieResults.map(movie => {
+                        return (
+                            <Link to={"/movie/" + movie.id}>
+                                <img
+                                    src={
+                                        "http://image.tmdb.org/t/p/w185" +
+                                        movie.poster_path
+                                    }
+                                />
+                            </Link>
+                        );
+                    })
+                ) : (
+                    <div>Search Movie Results</div>
+                )}
             </div>
         );
     }
