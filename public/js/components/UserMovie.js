@@ -61,7 +61,7 @@ class UserMovie extends React.Component {
                     <div className={this.state.hover ? "bg" : "hide"}>
                         <img className="bg-cover" src={this.state.backdrop} />
                     </div>
-                    <div className="hovereffect">
+                    <div className="hovereffect he">
                         <img
                             src={this.state.image}
                             style={{ display: "block", margin: "auto" }}

@@ -1,6 +1,6 @@
 class MoviesResult extends React.Component {
     handleAddFavorite = movie => {
-        fetch("/movies/" + this.props.currentUser._id + "/" + movie.id, {
+        fetch(`/movies/${this.props.currentUser._id}/${movie.id}`, {
             method: "PUT"
         })
             .then(console.log("added to favs"))
@@ -8,40 +8,30 @@ class MoviesResult extends React.Component {
     };
     render() {
         return (
-            <div className="movies-result">
-                <ul>
-                    {this.props.movieResults ? (
-                        this.props.movieResults.map(movie => {
-                            return (
-                                <React.Fragment>
-                                    <ul>
-                                        <li> {movie.title}</li>
-                                        <li> {movie.vote_average} of 10 </li>
-                                    </ul>
-                                    <img
-                                        src={
-                                            "http://image.tmdb.org/t/p/w300" +
-                                            movie.poster_path
-                                        }
-                                    />
-                                    {this.props.currentUser ? (
-                                        <button
-                                            onClick={() =>
-                                                this.handleAddFavorite(movie)
-                                            }
-                                        >
-                                            Like!
-                                        </button>
-                                    ) : (
-                                        <Link to="/login">Like</Link>
-                                    )}
-                                </React.Fragment>
-                            );
-                        })
-                    ) : (
-                        <div>Search Movie Results</div>
-                    )}
-                </ul>
+            <div className="single-recommended py-3">
+                {this.props.movieResults.map(movie => {
+                    return (
+                        <div>
+                            <div className="hovereffect">
+                                <img
+                                    src={
+                                        "http://image.tmdb.org/t/p/w185" +
+                                        movie.poster_path
+                                    }
+                                />
+                                <div className="overlay">
+                                    <p>{movie.title}</p>
+                                    <Link
+                                        className="info"
+                                        to={"/movie/" + movie.id}
+                                    >
+                                        More Info
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         );
     }
