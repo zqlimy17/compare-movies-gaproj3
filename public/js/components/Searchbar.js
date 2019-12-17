@@ -2,53 +2,24 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            baseURL: "https://api.themoviedb.org/3/",
-            apikey: "api_key=" + "1a31cfdf9cc81f7229bbbc09db5d95bd",
-            query: "&query=",
-            searchquery: "search/movie?",
-            movieTitle: "",
-            searchURL: "",
             movieResults: []
         };
     }
-    handleChange = event => {
-        this.setState({ [event.target.id]: event.target.value });
-    };
     handleRender = event => {
-        event.preventDefault();
-        this.setState(
-            {
-                searchURL:
-                    this.state.baseURL +
-                    this.state.searchquery +
-                    this.state.apikey +
-                    this.state.query +
-                    this.state.movieTitle
-            },
-            () => {
-                // console.log('search url:' + this.state.searchURL);
-                // console.log('base url:' + this.state.baseURL);
-                fetch(this.state.searchURL)
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(
-                        json => {
-                            this.setState({
-                                movieResults: json.results
-                            });
-                        },
-                        err => console.log(err)
-                    );
-            }
-        );
-    };
-    handleAddFavorites = event => {
-        fetch(this.state.favoriteUrl, {
-            method: "PUT"
-        })
-            .then(console.log("added to favs"))
-            .catch(error => console.log(error));
+        fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=1a31cfdf9cc81f7229bbbc09db5d95bd&query=${event.target.value}`
+        )
+            .then(response => {
+                return response.json();
+            })
+            .then(
+                json => {
+                    this.setState({
+                        movieResults: json.results || []
+                    });
+                },
+                err => console.log(err)
+            );
     };
     render() {
         return (
@@ -57,7 +28,7 @@ class Search extends React.Component {
                     <form onChange={this.handleRender}>
                         <input
                             className="form-control"
-                            onChange={this.handleChange}
+                            onChange={this.handleRender}
                             type="text"
                             name="searchbar"
                             id="movieTitle"
@@ -67,14 +38,18 @@ class Search extends React.Component {
                         ></input>
                     </form>
                 </div>
-                {this.state.movieResults ? (
-                    <MoviesResult
-                        movieResults={this.state.movieResults}
-                        currentUser={this.props.currentUser}
-                    />
-                ) : (
-                    ""
-                )}
+                <MoviesResult
+                    movieResults={this.state.movieResults}
+                    currentUser={this.props.currentUser}
+                />
+                <NowPlaying
+                    currentUser={this.props.currentUser}
+                    userState={this.props.userState}
+                />
+                <PopularMovies
+                    currentUser={this.props.currentUser}
+                    userState={this.props.userState}
+                />
             </React.Fragment>
         );
     }
