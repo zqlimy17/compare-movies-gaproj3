@@ -10,6 +10,7 @@ movie.put("/:userId/:movieId", (req, res) => {
                 favorites: req.params.movieId
             }
         },
+        { new: true },
         (err, updatedUser) => {
             if (err) console.log(err.message);
             console.log(`Movie has been added.`);
@@ -26,6 +27,7 @@ movie.delete("/:userId/:deleteMovieId", (req, res) => {
                 favorites: req.params.deleteMovieId
             }
         },
+        { new: true },
         (err, updatedUser) => {
             if (err) console.log(err.message);
             console.log("Movie has been deleted.");
