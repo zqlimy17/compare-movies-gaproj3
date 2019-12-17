@@ -1,7 +1,9 @@
 /* * {
     outline: 1px solid gold;
     outline-offset: -1px;
-} */
+}
+ */
+
 * {
     box-sizing: border-box;
 }
@@ -226,4 +228,27 @@ a:hover {
 .hovereffect:hover a.info {
     -webkit-transition-delay: .2s;
     transition-delay: .2s;
+}
+
+
+.form {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+}
+
+.form-control {
+    background: #454545;
+    color: white;
+    border: 0;
+}
+
+.form-control:focus {
+    background: #454545;
+    color: white;
+    outline: none !important;
+    border-bottom: 1px solid gold;
+}
+
+.form-control::placeholder {
+    color: ghostwhite;
 }
