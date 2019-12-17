@@ -1,23 +1,3 @@
-class SearchBar extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div className='search-bar'>
-          <form>
-            <input
-              type='text'
-              name='searchbar'
-              id='searchbar'
-              placeholder='Search Movies...'
-            ></input>
-            <input class='btn btn-primary' type='submit' value='Search'></input>
-          </form>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -26,12 +6,16 @@ class Search extends React.Component {
       apikey: 'api_key=' + '1a31cfdf9cc81f7229bbbc09db5d95bd',
       query: '&query=',
       searchquery: 'search/movie?',
-      movieTitle: 'Jack+Reacher',
+      movieTitle: '',
       searchURL: '',
       movieResults: []
     };
   }
-  componentDidMount() {
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value });
+  };
+  handleSubmit = event => {
+    event.preventDefault();
     this.setState(
       {
         searchURL:
@@ -42,8 +26,8 @@ class Search extends React.Component {
           this.state.movieTitle
       },
       () => {
-        console.log('search url:' + this.state.searchURL);
-        console.log('base url:' + this.state.baseURL);
+        // console.log('search url:' + this.state.searchURL);
+        // console.log('base url:' + this.state.baseURL);
         fetch(this.state.searchURL)
           .then(response => {
             return response.json();
@@ -53,24 +37,40 @@ class Search extends React.Component {
               this.setState({
                 movieResults: json.results
               });
-              console.log(json.results);
             },
             err => console.log(err)
           );
       }
     );
-  }
-  seachMovie = event => {
-    let text = event.target.innerText;
-    this.setState({
-      movieTitle: text
-    });
+  };
+  handleAddFavorites = event => {
+    fetch(this.state.favoriteUrl, {
+      method: 'PUT'
+    })
+      .then(console.log('added to favs'))
+      .catch(error => console.log(error));
   };
   render() {
     return (
       <React.Fragment>
+        <div className='search-bar'>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              onChange={this.handleChange}
+              type='text'
+              name='searchbar'
+              id='movieTitle'
+              placeholder='Search Movies...'
+              value={this.state.value}
+            ></input>
+            <input class='btn btn-primary' type='submit' value='Search'></input>
+          </form>
+        </div>
         {this.state.movieResults ? (
-          <MoviesResult movieResults={this.state.movieResults} />
+          <MoviesResult
+            movieResults={this.state.movieResults}
+            currentUser={this.props.currentUser}
+          />
         ) : (
           ''
         )}
