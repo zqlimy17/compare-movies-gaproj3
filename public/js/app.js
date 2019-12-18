@@ -27,10 +27,8 @@ class App extends React.Component {
                 },
                 err => console.log(err)
             );
-        console.log("current user is", this.state.currentUser);
     };
     handleLogout = () => {
-        console.log("User has logged out");
         this.setState({
             currentUser: ""
         });
