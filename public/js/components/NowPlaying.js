@@ -28,7 +28,7 @@ class NowPlaying extends React.Component {
             <div>
                 <h3>Now Playing</h3>
                 <div className="single-recommended pb-3">
-                    {this.state.nowPlaying.reverse().map(movie => {
+                    {this.state.nowPlaying.map(movie => {
                         return (
                             <MovieList
                                 movie={movie}
