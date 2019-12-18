@@ -36,53 +36,62 @@ class MoviesResult extends React.Component {
     };
     render() {
         return (
-            <div className="single-recommended py-3">
+            <div className="movie-results d-flex flex-wrap">
                 {this.props.movieResults.map(movie => {
                     return (
-                        <div>
-                            <div className="hovereffect">
+                        <div className="col-sm-4 my-3">
+                            <div
+                                className="hovereffect-mr"
+                                style={{ maxHeight: "203px" }}
+                            >
                                 <img
-                                    src={
-                                        "http://image.tmdb.org/t/p/w185" +
-                                        movie.poster_path
-                                    }
+                                    className="img-responsive"
+                                    src={`http://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
+                                    onError={() => {
+                                        event.target.src = `http://image.tmdb.org/t/p/w300${movie.poster_path}`;
+                                    }}
+                                    style={{
+                                        objectFit: "contain",
+                                        maxHeight: "100%",
+                                        overflowX: "hidden"
+                                    }}
                                 />
-                                <div className="overlay">
-                                    <p>{movie.title}</p>
+                                <div className="overlay-mr">
                                     <Link
-                                        className="info mb-3"
+                                        className="mb-3"
                                         to={"/movie/" + movie.id}
                                     >
-                                        More Info
+                                        <h2>{movie.title}</h2>
                                     </Link>
-                                    <br />
                                     {this.props.currentUser === "" ? (
-                                        <Link
-                                            className="btn btn-outline-warning btn-md"
-                                            to="/login"
-                                        >
-                                            <i class="fa fa-star-o" /> Like!
-                                        </Link>
+                                        <p>
+                                            <Link
+                                                className="btn btn-outline-warning btn-md"
+                                                to="/login"
+                                            >
+                                                <i class="fa fa-star-o" /> Like!
+                                            </Link>
+                                        </p>
                                     ) : this.props.currentUser.favorites.indexOf(
                                           movie.id.toString()
                                       ) === -1 ? (
-                                        <button
+                                        <p
                                             className="btn btn-outline-warning btn-md"
                                             onClick={() => {
                                                 this.handleLike(movie);
                                             }}
                                         >
                                             <i class="fa fa-star-o" /> Like!
-                                        </button>
+                                        </p>
                                     ) : (
-                                        <button
+                                        <p
                                             className="btn btn-warning btn-md"
                                             onClick={() => {
                                                 this.handleUnlike(movie);
                                             }}
                                         >
                                             <i class="fa fa-star" /> Unlike!
-                                        </button>
+                                        </p>
                                     )}
                                 </div>
                             </div>

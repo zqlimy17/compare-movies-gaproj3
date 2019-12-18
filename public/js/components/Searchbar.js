@@ -25,7 +25,7 @@ class Search extends React.Component {
         return (
             <React.Fragment>
                 <div>
-                    <form onChange={this.handleRender}>
+                    <form onChange={this.handleRender} className="pb-3">
                         <input
                             className="form-control"
                             onChange={this.handleRender}
