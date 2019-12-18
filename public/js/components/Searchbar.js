@@ -41,6 +41,7 @@ class Search extends React.Component {
                 <MoviesResult
                     movieResults={this.state.movieResults}
                     currentUser={this.props.currentUser}
+                    userState={this.props.userState}
                 />
                 <NowPlaying
                     currentUser={this.props.currentUser}
