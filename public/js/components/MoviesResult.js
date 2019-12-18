@@ -39,14 +39,22 @@ class MoviesResult extends React.Component {
             <div className="movie-results d-flex flex-wrap">
                 {this.props.movieResults.map(movie => {
                     return (
-                        <div className="col-sm-3 my-3">
-                            <div className="hovereffect-mr">
+                        <div className="col-sm-4 my-3">
+                            <div
+                                className="hovereffect-mr"
+                                style={{ maxHeight: "203px" }}
+                            >
                                 <img
                                     className="img-responsive"
-                                    src={
-                                        "http://image.tmdb.org/t/p/w300" +
-                                        movie.backdrop_path
-                                    }
+                                    src={`http://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
+                                    onError={() => {
+                                        event.target.src = `http://image.tmdb.org/t/p/w300${movie.poster_path}`;
+                                    }}
+                                    style={{
+                                        objectFit: "contain",
+                                        maxHeight: "100%",
+                                        overflowX: "hidden"
+                                    }}
                                 />
                                 <div className="overlay-mr">
                                     <Link
